@@ -1,5 +1,85 @@
-$bgColor: rgb(0, 89, 255);
+@use "variaveis";
+@use "hero"; // Certifique-se de que o caminho do arquivo "hero" está correto
 
+// Resetando margens e paddings para garantir consistência no layout
+@font-face {
+  font-family: Avenir;
+  src: url(../../assets/fonts/Avenir-Regular.Woff2);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Avenir;
+  src: url(../../assets/fonts/Avenir-Bold.Woff2);
+  font-weight: 700;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Estilo geral para o corpo
 body {
-  background-color: $bgColor;
+  background-color: variaveis.$corDeFundo;
+  font-family: Avenir, sans-serif; // Defina uma fonte padrão, se necessário
+  color: variaveis.$cortextoPrincipal; // Cor do texto geral
+}
+
+// Mixin para estilos de texto
+@mixin text($fontSize: 16px) {
+  font-size: $fontSize;
+  line-height: $fontSize + 10px; // Garante um espaçamento adequado entre as linhas
+  color: variaveis.$cortextoPrincipal;
+}
+
+// Mixin para títulos (com a cor secundária)
+@mixin title($fontSize: 40px) {
+  @include text($fontSize); // Reutiliza o mixin de texto
+  color: variaveis.$cortextoSecundario; // Título recebe a cor do texto secundário
+}
+
+// Estilos de texto com diferentes tamanhos
+.text--big {
+  @include text(18px);
+}
+
+.text {
+  @include text; // Tamanho padrão de 16px
+}
+
+.text--small {
+  @include text(12px);
+}
+
+// Estilos de link com texto sublinhado
+.link-text {
+  @include text(18px);
+  color: variaveis.$cortextoSecundario;
+  text-decoration: underline;
+}
+
+// Estilos de título com diferentes tamanhos
+.text--big {
+  @include text(44px);
+}
+
+.text {
+  @include text; // Título com o tamanho padrão de 40px
+}
+
+.title--small {
+  @include text(28px);
+}
+
+// Estilos para a container de imagens (se você usar imagens)
+.container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); // Grid responsivo
+  gap: 20px; // Espaçamento entre os itens
+  margin: 20px;
 }
