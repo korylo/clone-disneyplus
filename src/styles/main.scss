@@ -1,5 +1,6 @@
 @use "variaveis";
 @use "hero"; // Certifique-se de que o caminho do arquivo "hero" está correto
+@use "shows";
 
 // Resetando margens e paddings para garantir consistência no layout
 @font-face {
@@ -18,31 +19,30 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Avenir, Arial, sans-serif; // Fonte com fallback
 }
 
 // Estilo geral para o corpo
 body {
   background-color: variaveis.$corDeFundo;
-  font-family: Avenir, sans-serif; // Defina uma fonte padrão, se necessário
-  color: variaveis.$cortextoPrincipal; // Cor do texto geral
 }
 
 // Mixin para estilos de texto
 @mixin text($fontSize: 16px) {
   font-size: $fontSize;
-  line-height: $fontSize + 10px; // Garante um espaçamento adequado entre as linhas
-  color: variaveis.$cortextoPrincipal;
+  line-height: $fontSize * 1.5; // Ajuste do line-height para flexibilidade
+  color: variaveis.$corTextoPrincipal;
 }
 
 // Mixin para títulos (com a cor secundária)
 @mixin title($fontSize: 40px) {
   @include text($fontSize); // Reutiliza o mixin de texto
-  color: variaveis.$cortextoSecundario; // Título recebe a cor do texto secundário
+  color: variaveis.$corTextoSecundario; // Título recebe a cor do texto secundário
 }
 
 // Estilos de texto com diferentes tamanhos
 .text--big {
-  @include text(18px);
+  @include text(44px); // Tamanho maior para títulos ou texto grande
 }
 
 .text {
@@ -56,19 +56,11 @@ body {
 // Estilos de link com texto sublinhado
 .link-text {
   @include text(18px);
-  color: variaveis.$cortextoSecundario;
+  color: variaveis.$corTextoSecundario;
   text-decoration: underline;
 }
 
 // Estilos de título com diferentes tamanhos
-.text--big {
-  @include text(44px);
-}
-
-.text {
-  @include text; // Título com o tamanho padrão de 40px
-}
-
 .title--small {
   @include text(28px);
 }
